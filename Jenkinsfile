@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/SupritaJogin/MyMavenSeleniumApp.git'
+                git branch: 'main', 'https://github.com/SupritaJogin/MyMavenSeleniumApp.git'
             }
         }
 
