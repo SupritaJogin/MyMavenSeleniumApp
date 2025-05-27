@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     tools {
-        jdk 'jdk24'       // Make sure 'jdk24' is configured in Jenkins under Global Tool Configuration
-        maven 'Maven'     // Same for 'Maven'
+        jdk 'JDK'           // Change 'JDK' to your actual JDK name in Jenkins Global Tool Config
+        maven 'Maven'       // Make sure Maven is configured under this name in Jenkins Global Tool Config
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/SupritaJogin/YourSeleniumProject.git'
+                git branch: 'main', url: 'https://github.com/SupritaJogin/MyMavenSeleniumApp.git', credentialsId: 'github-token'
             }
         }
 
@@ -27,7 +27,6 @@ pipeline {
 
         stage('Report') {
             steps {
-                // Optional: If using Surefire/Allure/Extent Reports
                 echo 'Collecting and publishing test reports...'
             }
         }
@@ -42,3 +41,5 @@ pipeline {
         }
     }
 }
+
+           
