@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        jdk 'JDK'     // This must match exactly the name you gave under Manage Jenkins > Tools > JDK
+        jdk 'jdk17'     // This must match exactly the name you gave under Manage Jenkins > Tools > JDK
         maven 'Maven' // (if you added Maven tool by name 'Maven')
     }
 
