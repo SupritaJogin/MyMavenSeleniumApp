@@ -2,44 +2,39 @@ pipeline {
     agent any
 
     tools {
-        jdk 'JDK'           // Change 'JDK' to your actual JDK name in Jenkins Global Tool Config
-        maven 'Maven'       // Make sure Maven is configured under this name in Jenkins Global Tool Config
+        jdk 'JDK'     // This must match exactly the name you gave under Manage Jenkins > Tools > JDK
+        maven 'Maven' // (if you added Maven tool by name 'Maven')
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/SupritaJogin/MyMavenSeleniumApp.git', credentialsId: 'github-token'
+                git 'https://github.com/SupritaJogin/MyMavenSeleniumApp.git'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean compile'
+                bat "mvn clean compile"
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                bat "mvn test"
             }
         }
 
         stage('Report') {
             steps {
-                echo 'Collecting and publishing test reports...'
+                echo "Tests completed. Check reports."
             }
         }
     }
 
     post {
-        success {
-            echo 'Selenium tests passed successfully!'
-        }
         failure {
-            echo 'Selenium tests failed. Please check logs.'
+            echo "Selenium tests failed. Please check logs."
         }
     }
 }
-
-           
